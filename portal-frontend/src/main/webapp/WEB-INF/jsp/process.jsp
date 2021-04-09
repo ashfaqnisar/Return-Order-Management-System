@@ -14,7 +14,6 @@
 
 </head>
 <style>
-
 body, table, td, a {
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
