@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@ span {
 }
 
 .register {
-	background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+	background: -webkit-linear-gradient(left, #ff0000, #ffa07a);
 	margin-top: 3%;
 	padding: 3%;
 }
@@ -125,7 +125,7 @@ transform :translateY(-20px);}
 	border: none;
 	border-radius: 1.5rem;
 	padding: 2%;
-	background: #0062cc;
+	background: red;
 	color: #fff;
 	font-weight: 600;
 	width: 50%;
@@ -135,7 +135,7 @@ transform :translateY(-20px);}
 .register .nav-tabs {
 	margin-top: 3%;
 	border: none;
-	background: #0062cc;
+	background: red;
 	border-radius: 1.5rem;
 	width: 28%;
 	float: right;
@@ -156,8 +156,8 @@ transform :translateY(-20px);}
 
 .register .nav-tabs .nav-link.active {
 	width: 100px;
-	color: #0062cc;
-	border: 2px solid #0062cc;
+	color: red;
+	border: 2px solid red;
 	border-top-left-radius: 1.5rem;
 	border-bottom-left-radius: 1.5rem;
 }
@@ -178,7 +178,7 @@ label {
 		<div class="row">
 			<div class="col-md-3 register-left">
 				<img src="https://image.flaticon.com/icons/png/512/1440/1440524.png" alt="" />
-				<h3>Welcome</h3>
+				<h3>Welcome!</h3>
 				<p>You are few seconds away from returning your product!</p>
 			</div>
 			<div class="col-md-9 register-right">
@@ -203,13 +203,13 @@ label {
 											 />
 									</div>
 									<div class="form-group">
-										<label for="contactNumber">Contact Number</label><span>
+										<label for="contactNumber">Contact Number </label><span>
 											*</span> <input type="tel" class="form-control"
 											placeholder="Enter your Contact Number" value=""
 											name="contactNumber" id="contactNumber" required="required" />
 									</div>
 									<div class="form-group">
-										<label for="home">Home Telephone Number</label>
+										<label for="home">Home Telephone Number </label>
 										<input type="tel" class="form-control"
 											placeholder="Home Telephone Number" value=""
 											name="homeNumber" id="homeNumber" />
@@ -253,7 +253,7 @@ label {
 											</div>
 										</div>
 									</fieldset>
-									<button type="submit" class="btn btn-primary">Confirm
+									<button type="submit" class="btn btn-danger">Confirm
 										Return</button>
 										
 								</div>
