@@ -1,3 +1,4 @@
+insert into CREDITS values (1234123412,100000);
 insert into CREDITS values (1234567891234567,10000);
 insert into CREDITS values (2345678912345678,20000);
 insert into CREDITS values (5685312579977435,30000);
