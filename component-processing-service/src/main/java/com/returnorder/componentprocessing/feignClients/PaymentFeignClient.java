@@ -1,6 +1,6 @@
-package com.returnorder.componentprocessing.feignService;
+package com.returnorder.componentprocessing.feignClients;
 
-import com.returnorder.componentprocessing.entities.PaymentResponse;
+import com.returnorder.componentprocessing.payload.PaymentResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
