@@ -2,6 +2,7 @@ package com.returnorder.componentprocessing.services;
 
 import com.returnorder.componentprocessing.entity.PaymentReturn;
 import com.returnorder.componentprocessing.entity.ReturnRequest;
+import com.returnorder.componentprocessing.feignClients.PackagingAndDeliveryFeignClient;
 import com.returnorder.componentprocessing.feignClients.PaymentFeignClient;
 import com.returnorder.componentprocessing.payload.PaymentResponse;
 import com.returnorder.componentprocessing.payload.ReturnRequestPayload;
@@ -24,16 +25,18 @@ public class ReturnProcessService {
     private final ReturnRequestRepository returnRequestRepository;
     private final PaymentReturnRepository paymentReturnRepository;
     private final PaymentFeignClient paymentFeignClient;
+    private final PackagingAndDeliveryFeignClient packagingAndDeliveryFeignClient;
 
     @Autowired
     public ReturnProcessService(
             ReturnRequestRepository returnRequestRepository,
+            PaymentReturnRepository paymentReturnRepository,
             PaymentFeignClient paymentFeignClient,
-            PaymentReturnRepository paymentReturnRepository
-    ) {
+            PackagingAndDeliveryFeignClient packagingAndDeliveryFeignClient) {
         this.returnRequestRepository = returnRequestRepository;
         this.paymentReturnRepository = paymentReturnRepository;
         this.paymentFeignClient = paymentFeignClient;
+        this.packagingAndDeliveryFeignClient = packagingAndDeliveryFeignClient;
     }
 
     public ReturnResponsePayload processReturnRequest(ReturnRequestPayload returnRequestPayload) {
@@ -53,6 +56,10 @@ public class ReturnProcessService {
         returnRequest.setProcessingCharge(processingCharge);
         returnRequest.setDateOfDelivery(Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         returnRequest.setRequestId(UUID.randomUUID().toString().replace("-", ""));
+
+        returnRequest.setPackageAndDeliveryCharge(packagingAndDeliveryFeignClient.getPackagingAndDeliveryCharge(
+                returnRequestPayload.getComponentType(), returnRequestPayload.getQuantity())
+        );
 
         returnRequestRepository.save(returnRequest);
 
