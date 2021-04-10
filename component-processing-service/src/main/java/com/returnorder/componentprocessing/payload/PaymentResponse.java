@@ -1,4 +1,4 @@
-package com.returnorder.componentprocessing.entities;
+package com.returnorder.componentprocessing.payload;
 
 import lombok.Data;
 
