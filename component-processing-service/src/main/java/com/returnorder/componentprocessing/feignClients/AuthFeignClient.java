@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface AuthFeignClient {
 
     @GetMapping(value = "/validate")
-    Boolean isValidToken(@RequestHeader("Authorization") String token);
+    Boolean validateToken(@RequestHeader("Authorization") String token);
 
 }

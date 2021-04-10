@@ -25,14 +25,8 @@ public class ComponentRestController {
     }
 
     @GetMapping("/payment")
-    public PaymentResponse getPaymentResponse(
-            @RequestHeader("Authorization") String token,
-            @RequestBody PaymentRequest paymentRequest) {
-        log.debug("Inside the call");
-        if (!authFeignClient.isValidToken(token)) {
-            log.error("Invalid Token Passed");
-            throw new TokenInvalidException("Invalid Token");
-        }
+    public PaymentResponse getPaymentResponse(@RequestHeader("Authorization") String token, @RequestBody PaymentRequest paymentRequest) {
+        authFeignClient.validateToken(token);
         return paymentFeignClient.getCurrentBalance(paymentRequest.getCardNumber(), paymentRequest.getCharge());
     }
 }
