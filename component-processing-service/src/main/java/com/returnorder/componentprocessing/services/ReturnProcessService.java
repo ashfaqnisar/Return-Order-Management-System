@@ -1,8 +1,12 @@
 package com.returnorder.componentprocessing.services;
 
+import com.returnorder.componentprocessing.entity.PaymentReturn;
 import com.returnorder.componentprocessing.entity.ReturnRequest;
+import com.returnorder.componentprocessing.feignClients.PaymentFeignClient;
+import com.returnorder.componentprocessing.payload.PaymentResponse;
 import com.returnorder.componentprocessing.payload.ReturnRequestPayload;
 import com.returnorder.componentprocessing.payload.ReturnResponsePayload;
+import com.returnorder.componentprocessing.repositories.PaymentReturnRepository;
 import com.returnorder.componentprocessing.repositories.ReturnRequestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -18,10 +22,18 @@ import java.util.UUID;
 @Slf4j
 public class ReturnProcessService {
     private final ReturnRequestRepository returnRequestRepository;
+    private final PaymentReturnRepository paymentReturnRepository;
+    private final PaymentFeignClient paymentFeignClient;
 
     @Autowired
-    public ReturnProcessService(ReturnRequestRepository returnRequestRepository) {
+    public ReturnProcessService(
+            ReturnRequestRepository returnRequestRepository,
+            PaymentFeignClient paymentFeignClient,
+            PaymentReturnRepository paymentReturnRepository
+    ) {
         this.returnRequestRepository = returnRequestRepository;
+        this.paymentReturnRepository = paymentReturnRepository;
+        this.paymentFeignClient = paymentFeignClient;
     }
 
     public ReturnResponsePayload processReturnRequest(ReturnRequestPayload returnRequestPayload) {
@@ -48,5 +60,22 @@ public class ReturnProcessService {
 
         return returnResponsePayload;
 
+    }
+
+    public String makePayment(String requestId, long cardNumber, double processingCharge) {
+        PaymentReturn paymentRequest = new PaymentReturn(requestId, cardNumber, processingCharge);
+
+        paymentReturnRepository.save(paymentRequest);
+
+        log.info("Works here");
+
+        PaymentResponse paymentResponse = paymentFeignClient.getCurrentBalance(cardNumber, processingCharge);
+        log.info("Crashed here");
+        log.info(paymentResponse.toString());
+
+        if (paymentResponse.getCurrentBalance() <= -1)
+            return "Insufficient Balance";
+        else
+            return "Payment Successfully";
     }
 }

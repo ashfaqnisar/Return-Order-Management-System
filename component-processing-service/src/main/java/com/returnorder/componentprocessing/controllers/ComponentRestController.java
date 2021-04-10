@@ -31,8 +31,17 @@ public class ComponentRestController {
                                                      @RequestBody ReturnRequestPayload returnRequestPayload) {
         authFeignClient.validateToken(token);
         return returnProcessService.processReturnRequest(returnRequestPayload);
-
-//        return paymentFeignClient.getCurrentBalance();
-//        return null;
     }
+
+    @PostMapping("/payment/{requestId}/{cardNumber}/{processingCharge}")
+    public String paymentForReturnRequest(
+            @RequestHeader("Authorization") String token,
+            @PathVariable("requestId") String requestId,
+            @PathVariable("cardNumber") long cardNumber,
+            @PathVariable("processingCharge") double processingCharge
+    ) {
+        authFeignClient.validateToken(token);
+        return returnProcessService.makePayment(requestId, cardNumber, processingCharge);
+    }
+
 }

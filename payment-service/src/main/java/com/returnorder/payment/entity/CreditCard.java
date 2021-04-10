@@ -15,5 +15,4 @@ public class CreditCard {
     @Id
     private Long cardNumber;
     private double cardLimit;
-
 }
