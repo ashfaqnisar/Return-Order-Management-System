@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Component
 @Slf4j
-public class JwtUtils {
+public class JwtHandler {
 
     @Value("${app.jwtSecret}")
     private String jwtSecret;
