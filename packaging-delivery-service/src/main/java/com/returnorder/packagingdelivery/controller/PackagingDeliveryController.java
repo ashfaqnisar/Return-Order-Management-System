@@ -1,0 +1,23 @@
+package com.returnorder.packagingdelivery.controller;
+
+import com.returnorder.packagingdelivery.service.PackagingAndDeliveryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class PackagingDeliveryController {
+
+    public PackagingAndDeliveryService packagingAndDeliveryService;
+
+    @Autowired
+    public PackagingDeliveryController(PackagingAndDeliveryService packagingAndDeliveryService) {
+        this.packagingAndDeliveryService = packagingAndDeliveryService;
+    }
+
+    @GetMapping("/getPackagingAndDeliveryCharge/{componentType}/{count}")
+    public double getPackagingAndDeliveryCharge(@PathVariable String componentType, @PathVariable int count) {
+        return packagingAndDeliveryService.getCharge(componentType, count);
+    }
+}
