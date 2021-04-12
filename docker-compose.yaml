@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  eureka-service:
+    container_name: eureka-service
+    image: eureka-service
+    ports:
+      - 1000:1000
