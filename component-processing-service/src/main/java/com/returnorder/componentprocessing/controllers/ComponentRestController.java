@@ -14,14 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 public class ComponentRestController {
-    private final PaymentFeignClient paymentFeignClient;
     private final AuthFeignClient authFeignClient;
 
     private final ReturnProcessService returnProcessService;
 
     @Autowired
-    public ComponentRestController(PaymentFeignClient paymentFeignClient, AuthFeignClient authFeignClient, ReturnProcessService returnProcessService) {
-        this.paymentFeignClient = paymentFeignClient;
+    public ComponentRestController(AuthFeignClient authFeignClient, ReturnProcessService returnProcessService) {
         this.authFeignClient = authFeignClient;
         this.returnProcessService = returnProcessService;
     }

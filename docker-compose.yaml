@@ -5,3 +5,10 @@ services:
     image: eureka-service
     ports:
       - 1000:1000
+  authentication-service:
+    container_name: authentication-service
+    image: authentication-service
+    ports:
+    - 2000:2000
+    depends_on:
+      - eureka-service
