@@ -11,7 +11,7 @@
     <groupId>com.returnorder</groupId>
     <artifactId>packaging-delivery</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Packaging-Delivery-Service</name>
+    <name>packaging-delivery-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>

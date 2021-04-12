@@ -11,7 +11,7 @@
     <groupId>com.returnorder</groupId>
     <artifactId>authentication</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>authentication</name>
+    <name>authentication-service</name>
     <description>Authentication MicroService</description>
 
     <properties>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Return-Order-Management-System.iml" filepath="$PROJECT_DIR$/.idea/Return-Order-Management-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/authentication-service/authentication.iml" filepath="$PROJECT_DIR$/authentication-service/authentication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component-processing-service/component-processing.iml" filepath="$PROJECT_DIR$/component-processing-service/component-processing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packaging-delivery-service/packaging-delivery.iml" filepath="$PROJECT_DIR$/packaging-delivery-service/packaging-delivery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment-service/payment.iml" filepath="$PROJECT_DIR$/payment-service/payment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/portal-frontend/portal-frontend.iml" filepath="$PROJECT_DIR$/portal-frontend/portal-frontend.iml" />
+    </modules>
+  </component>
+</project>
