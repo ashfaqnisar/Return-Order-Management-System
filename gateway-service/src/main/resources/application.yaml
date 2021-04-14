@@ -1,0 +1,36 @@
+server:
+  port: 1001
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: component-process-service-id
+          uri: lb://component-process-service
+          predicates:
+            - Path=/returns/**
+
+        - id: payment-service-id
+          uri: lb://payment-service
+          predicates:
+            - Path=/payments/**
+
+        - id: packaging-delivery-service-id
+          uri: lb://packaging-and-delivery-service
+          predicates:
+            - Path= /packagingAndDelivery/**
+
+        - id: authentication-service-id
+          uri: lb://authentication-service
+          predicates:
+            - Path= /auth/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
