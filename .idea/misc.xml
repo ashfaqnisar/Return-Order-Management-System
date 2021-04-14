@@ -6,9 +6,9 @@
         <option value="$PROJECT_DIR$/eureka-service/pom.xml" />
         <option value="$PROJECT_DIR$/portal-frontend/pom.xml" />
         <option value="$PROJECT_DIR$/authentication-service/pom.xml" />
+        <option value="$PROJECT_DIR$/component-processing-service/pom.xml" />
         <option value="$PROJECT_DIR$/packaging-delivery-service/pom.xml" />
         <option value="$PROJECT_DIR$/payment-service/pom.xml" />
-        <option value="$PROJECT_DIR$/component-processing-service/pom.xml" />
       </list>
     </option>
   </component>
