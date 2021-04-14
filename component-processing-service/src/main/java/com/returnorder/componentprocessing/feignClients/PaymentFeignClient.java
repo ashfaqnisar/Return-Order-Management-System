@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "payment-service")
 public interface PaymentFeignClient {
 
-    @GetMapping("/processPayment/{cardNumber}/{charge}")
+    @GetMapping("/payments/process/{cardNumber}/{charge}")
     PaymentResponse getCurrentBalance(@PathVariable long cardNumber, @PathVariable double charge);
 
 }

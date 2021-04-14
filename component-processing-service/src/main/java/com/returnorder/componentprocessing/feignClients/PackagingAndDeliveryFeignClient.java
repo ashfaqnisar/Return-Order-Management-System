@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "packaging-and-delivery-service")
 public interface PackagingAndDeliveryFeignClient {
-    @GetMapping("/getPackagingAndDeliveryCharge/{componentType}/{count}")
+    @GetMapping("/packagingAndDelivery/getCharge/{componentType}/{count}")
     double getPackagingAndDeliveryCharge(@PathVariable String componentType, @PathVariable int count);
 }
