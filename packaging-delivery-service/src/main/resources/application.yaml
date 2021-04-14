@@ -1,0 +1,19 @@
+server:
+  port: 8083
+  error:
+    include-stacktrace: never
+
+spring:
+  application:
+    name: packaging-and-delivery-service
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:packaging
+    driver-class-name: org.h2.Driver
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761

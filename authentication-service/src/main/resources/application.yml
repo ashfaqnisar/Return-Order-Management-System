@@ -1,0 +1,22 @@
+server:
+  port: ${PORT:2222}
+
+app:
+  jwtSecret: secretKey
+  jwtExpirationMs: 1800000
+
+spring:
+  application:
+    name: authentication-service
+  datasource:
+    url: jdbc:h2:mem:usersDb
+    platform: h2
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761
