@@ -12,19 +12,19 @@ import com.returnorder.authentication.repository.UserRepository;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class AuthorizationServiceApplication implements CommandLineRunner {
+public class AuthenticationServiceApplication implements CommandLineRunner {
 
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public AuthorizationServiceApplication(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+	public AuthenticationServiceApplication(UserRepository userRepository, PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(AuthorizationServiceApplication.class, args);
+		SpringApplication.run(AuthenticationServiceApplication.class, args);
 	}
 
 	@Override
