@@ -1,6 +1,13 @@
 server:
   port: 1001
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
 spring:
   application:
     name: gateway-service
@@ -11,6 +18,11 @@ spring:
           uri: lb://component-process-service
           predicates:
             - Path=/returns/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: component-process-service-id
+                fallbackuri: forward:/returnFallback
 
         - id: payment-service-id
           uri: lb://payment-service
@@ -27,10 +39,18 @@ spring:
           predicates:
             - Path= /auth/**
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: hystrix.stream
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
 
