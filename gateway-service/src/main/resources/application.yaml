@@ -19,14 +19,14 @@ spring:
               - GET
               - POST
       routes:
-        - id: component-process-service-id
-          uri: lb://component-process-service
+        - id: component-processing-service-id
+          uri: lb://component-processing-service
           predicates:
             - Path=/returns/**
           filters:
             - name: CircuitBreaker
               args:
-                name: component-process-service-id
+                name: component-processing-service-id
                 fallbackUri: forward:/returnFallback
 
         - id: payment-service-id
@@ -52,7 +52,7 @@ spring:
         - id: authentication-service-id
           uri: lb://authentication-service
           predicates:
-            - Path= /auth/**
+            - Path=/auth/**
           filters:
             - name: CircuitBreaker
               args:
