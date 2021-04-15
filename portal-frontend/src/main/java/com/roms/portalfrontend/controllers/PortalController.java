@@ -9,6 +9,10 @@ public class PortalController {
     public String homePage() {
         return "home";
     }
+    @GetMapping("/test")
+    public String testPage() {
+        return "test";
+    }
     @GetMapping("/login")
     public String loginPage() {
         return "login";
