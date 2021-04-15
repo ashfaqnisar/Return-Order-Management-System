@@ -70,26 +70,26 @@
         animation: mover 1s infinite alternate;
     }
 
-	@-webkit-keyframes mover {
-		0% {
-			transform: translateY(0);
-		}
-		100% {
-			transform: translateY(-20px);
-		}
-	}
+    @-webkit-keyframes mover {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-20px);
+        }
+    }
 
-	@keyframes mover {
-		0% {
-			transform: translateY(0);
-		}
-		100% {
-			transform: translateY(-20px);
-		}
-	}
+    @keyframes mover {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-20px);
+        }
+    }
 
 
-	.register-left p {
+    .register-left p {
         font-weight: lighter;
         padding: 12%;
         margin-top: -9%;
@@ -172,10 +172,11 @@
                         <div class="row register-form">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="username">First Name</label><span> *</span> <input
-                                        type="text" class="form-control"
-                                        placeholder="Enter your First Name" value="" name="username"
-                                        id="username" required="required"/>
+                                    <label for="username">First Name</label><span> *</span>
+                                    <input
+                                            type="text" class="form-control"
+                                            placeholder="Enter your First Name" value="" name="username"
+                                            id="username" required="required"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="username">Last Name</label> <input

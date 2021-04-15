@@ -1,9 +1,14 @@
 package com.roms.portalfrontend.controllers;
 
+import com.roms.portalfrontend.payload.LoginUserRequest;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@Slf4j
 public class PortalController {
     @GetMapping("/")
     public String homePage() {
@@ -11,11 +16,7 @@ public class PortalController {
     }
     @GetMapping("/test")
     public String testPage() {
-        return "test";
-    }
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
+        return "testLogin";
     }
 
     @GetMapping("/success")
@@ -36,6 +37,12 @@ public class PortalController {
     @GetMapping("/confirmation")
     public String confirmationPage() {
         return "confirmation";
+    }
+
+    @PostMapping("/login")
+    public String getUserDetails(@ModelAttribute("loginUserRequest") LoginUserRequest loginUserRequest){
+        log.info(loginUserRequest.toString());
+        return "redirect:/";
     }
 
 }
