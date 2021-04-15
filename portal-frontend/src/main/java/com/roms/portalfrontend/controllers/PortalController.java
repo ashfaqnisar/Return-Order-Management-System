@@ -1,11 +1,12 @@
 package com.roms.portalfrontend.controllers;
 
-import com.roms.portalfrontend.payload.LoginUserRequest;
-import lombok.extern.java.Log;
+import com.roms.portalfrontend.payload.LoginUserRequestPayload;
+import com.roms.portalfrontend.payload.ReturnRequestPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @Slf4j
@@ -40,9 +41,14 @@ public class PortalController {
     }
 
     @PostMapping("/login")
-    public String getUserDetails(@ModelAttribute("loginUserRequest") LoginUserRequest loginUserRequest){
-        log.info(loginUserRequest.toString());
+    public String getUserDetails(@ModelAttribute("loginUserRequest") LoginUserRequestPayload loginUserRequestPayload){
+        log.info(loginUserRequestPayload.toString());
         return "redirect:/";
+    }
+
+    @PostMapping("/createReturnProcess")
+    public String createReturnProcess(@ModelAttribute("returnRequestPayload") ReturnRequestPayload returnRequestPayload){
+        return "redirect:payment";
     }
 
 }
