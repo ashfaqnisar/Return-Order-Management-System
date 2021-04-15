@@ -4,34 +4,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class Login {
+public class PortalController {
     @GetMapping("/")
-    public String loginPage() {
+    public String homePage() {
         return "home";
     }
     @GetMapping("/login")
-    public String loginPage2() {
+    public String loginPage() {
         return "login";
     }
 
-    @GetMapping("/confirmation")
-    public String loginPage1() {
-        return "confirmation";
+    @GetMapping("/success")
+    public String successPage() {
+        return "success";
     }
 
     @GetMapping("/failure")
-    public String loginPage11() {
+    public String failurePage() {
         return "failure";
     }
 
     @GetMapping("/payment")
-    public String loginPage111() {
+    public String paymentPage() {
         return "payment";
     }
 
-    @GetMapping("/process")
-    public String loginPage1112() {
-        return "process";
+    @GetMapping("/confirmation")
+    public String confirmationPage() {
+        return "confirmation";
     }
 
 }

@@ -14,7 +14,6 @@
 
 </head>
 <style>
-
 body, table, td, a {
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
@@ -222,8 +221,8 @@ translateY
 
 .register .nav-tabs .nav-link.active {
 	width: 100px;
-	color: #0062cc;
-	border: 2px solid #0062cc;
+	color: red;
+	border: 2px solid red;
 	border-top-left-radius: 1.5rem;
 	border-bottom-left-radius: 1.5rem;
 }
@@ -245,7 +244,7 @@ label {
 			<div class="col-md-3 register-left">
 				<img src="https://image.flaticon.com/icons/png/512/1440/1440524.png" alt="" width="62.5" height="60"/>
 				<h3>Return Order Portal</h3>
-				<p>We will deliver your product as fast as possible.</p>
+				<p>You are few seconds away from returning your product!</p>
 				
 			</div>
 			<div class="col-md-9 register-right">
@@ -259,39 +258,120 @@ label {
 								<tr>
 									<td align="center"
 										style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
-										<br>
-										<h1
-											style="font-size: 50px; font-weight: 800; line-height: 46px; color: #333333; margin: 0; color:green;">
-											SUCCESS!</h1>
+										<img
+										src="https://img.icons8.com/color/48/000000/grocery-store.png"
+										width="62.5" height="60" style="display: block; border: 0px;" /><br>
+										<h2
+											style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0;">
+											Confirm Your Order Return!</h2>
 									</td>
 								</tr>
 								<tr>
 									<td align="left"
 										style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
 										<p
-											style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
-					
-											
+											style="font-size: 16px; font-weight: 400; line-height: 24px; color: red;">
+											<center>
+											The Processing Details of Your Return Order are as follows :</center></p>
 									</td>
 								</tr>
 								<tr>
-									<td><h4>Dear, ${username}</h4>
-        							<p style="font-size:20px;color:#5C5C5C;">Your payment of Rs.${charge} was successful. </p>
+									<td align="left" style="padding-top: 20px;">
+										<table cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td width="75%" align="left" bgcolor="#eeeeee"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+													Order Request ID</td>
+												<td width="25%" align="left" bgcolor="#eeeeee"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+													${requestId}</td>
+											</tr>
+											<tr>
+												<td width="75%" align="left"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">User
+													ID</td>
+												<td width="25%" align="left"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+													${userID}</td>
+											</tr>
+											<tr>
+												<td width="75%" align="left"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+													Packaging and Delivery Charge</td>
+												<td width="25%" align="left"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+													${packagingAndDeliveryCharge}</td>
+											</tr>
+											<tr>
+												<td width="75%" align="left"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+													Processing charge</td>
+												<td width="25%" align="left"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+													${processingCharge}</td>
+											</tr>
+
+										</table>
 									</td>
 								</tr>
+
 								<tr>
-									<td>
-										<p style="font-size:20px;color:#5C5C5C;">Request ID: ${requestId}</p>
+									<td align="left" style="padding-top: 20px;">
+										<table cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td width="75%" align="left"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+													Total charge</td>
+												<td width="25%" align="left"
+													style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+													${processingCharge + packagingAndDeliveryCharge}</td>
+											</tr>
+										</table>
 									</td>
 								</tr>
-								<tr>
-									<td>
-										<p style="font-size:10px;color:#5C5C5C;">Thank you for trusting us with your ${componentName}. For any queries contact +919766875311</p>
-									</td>
-								</tr>
-										
 							</table>
-						
+						</td>
+					</tr>
+					<tr>
+						<td height="100%" valign="top" width="100%"
+							style="padding: 0 35px 35px 35px; background-color: #ffffff;"
+							bgcolor="#ffffff">
+							<table border="0" cellpadding="0" cellspacing="0"
+								width="100%" style="max-width: 660px;">
+								<tr>
+									<td align="center" valign="top" style="font-size: 0;">
+										<div
+											style="display: inline-block; max-width: 50%; min-width: 240px; vertical-align: top; width: 100%;">
+											<table align="left" border="0" cellpadding="0"
+												cellspacing="0" width="100%" style="max-width: 300px;">
+												<tr><p></p></tr>
+												<tr>
+													<td align="left" valign="top"
+														style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px;">
+														Estimated Delivery Date</td>
+													<td align="left" valign="top"
+														style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
+														${dateOfDelivery}</td>
+												</tr>
+											</table>
+										</div>
+										<div>
+											<br>
+											<br><br><br>
+											
+											<a href="/cardDetails" class="btn btn-danger" style="margin-top: 50px;">Proceed for
+												Payment</a>
+											<p></p>
+										</div>
+										<div
+											style="display: inline-block; max-width: 50%; min-width: 240px; vertical-align: top; width: 100%;">
+
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
 
 
 				
