@@ -3,7 +3,7 @@ package com.roms.authentication.controller;
 import com.roms.authentication.exception.TokenInvalidException;
 import com.roms.authentication.payload.JwtResponse;
 import com.roms.authentication.payload.LoginRequest;
-import com.roms.authentication.security.jwt.JwtHandler;
+import com.roms.authentication.security.JwtHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
