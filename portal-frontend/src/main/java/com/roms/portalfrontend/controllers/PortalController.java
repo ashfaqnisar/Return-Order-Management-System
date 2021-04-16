@@ -12,36 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 public class PortalController {
     @GetMapping("/")
-    public String homePage() {
-        return "home";
+    public String loginPage() {
+        return "login.html";
     }
     @GetMapping("/test")
     public String testPage() {
         return "testLogin";
     }
 
-    @GetMapping("/success")
-    public String successPage() {
-        return "success";
-    }
-
-    @GetMapping("/failure")
-    public String failurePage() {
-        return "failure";
-    }
-
-    @GetMapping("/payment")
-    public String paymentPage() {
-        return "payment";
-    }
-
-    @GetMapping("/confirmation")
-    public String confirmationPage() {
-        return "confirmation";
-    }
-
-    @PostMapping("/login")
-    public String getUserDetails(@ModelAttribute("loginUserRequest") LoginUserRequestPayload loginUserRequestPayload){
+    @PostMapping("/processLogin")
+    public String getUserDetails(@ModelAttribute("loginPayload") LoginUserRequestPayload loginUserRequestPayload){
         log.info(loginUserRequestPayload.toString());
         return "redirect:/";
     }
