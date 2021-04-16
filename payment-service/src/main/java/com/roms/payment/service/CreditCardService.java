@@ -29,15 +29,14 @@ public class CreditCardService {
         }
 
         double cardLimit = creditCard.getCardLimit();
+        double balance = cardLimit > 0 ? cardLimit - charge : 0;
 
-        if (cardLimit > 0) {
-            double balance = cardLimit - charge;
-            if (balance > 0) {
-                creditCard.setCardLimit(balance);
-                cardRepository.save(creditCard);
-                return balance;
-            }
+        if (balance > 0) {
+            creditCard.setCardLimit(balance);
+            cardRepository.save(creditCard);
+            return balance;
         }
+
         return -1;
     }
 
