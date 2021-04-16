@@ -83,6 +83,6 @@ public class ReturnProcessService {
         if (paymentResponse.getCurrentBalance() <= -1)
             return "Insufficient Balance";
         else
-            return "Payment Successfully";
+            return "Payment Success";
     }
 }

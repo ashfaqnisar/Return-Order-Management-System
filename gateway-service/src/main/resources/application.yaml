@@ -1,5 +1,7 @@
 server:
   port: 1001
+  error:
+    include-stacktrace: never
 
 eureka:
   client:
