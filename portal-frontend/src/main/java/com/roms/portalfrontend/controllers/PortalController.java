@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 @Slf4j
 public class PortalController {
@@ -17,20 +15,20 @@ public class PortalController {
         return "login.html";
     }
 
-    @GetMapping("/test")
-    public String testPage() {
-        return "testLogin";
-    }
+//    @GetMapping("/test")
+//    public String testPage() {
+//        return "testLogin";
+//    }
 
-    @PostMapping("/processLogin")
-    public String getUserDetails(LoginUserRequestPayload loginUserRequestPayload, HttpSession session) {
-        log.info(loginUserRequestPayload.toString());
-        return "redirect:/";
-    }
+//    @PostMapping("/processLogin")
+//    public String getUserDetails(LoginUserRequestPayload loginUserRequestPayload) {
+//        log.info(loginUserRequestPayload.toString());
+//        return "redirect:/";
+//    }
 
-    @PostMapping("/processReturn")
-    public String createReturnProcess(ReturnRequestPayload returnRequestPayload) {
-        return "redirect:payment";
-    }
+//    @PostMapping("/processReturn")
+//    public String createReturnProcess(ReturnRequestPayload returnRequestPayload) {
+//        return "redirect:payment";
+//    }
 
 }
