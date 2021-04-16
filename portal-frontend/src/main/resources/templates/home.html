@@ -14,9 +14,80 @@
 <body>
 <div>
     <h1>Home</h1>
+    <form name="loginForm" method="post" th:action="@{/processReturnRequest}">
+        <div th:if="${param.error}" class="alert alert-danger">
+            Invalid Credentials
+        </div>
+        <div th:if="${param.logout}" class="alert alert-info">
+            Logged Out Successfully
+        </div>
+        <div th:if="${param.message}" class="alert alert-info">
+            <p th:text="${param.message}">Message</p>
+        </div>
+        <div class="form-group">
+            <label for="userName">Username *</label>
+            <input type="text" name="userName" id="userName" class="form-control"
+                   placeholder="Enter username" required="required">
+        </div>
+        <div class="form-group">
+            <label for="contactNumber">Contact Number <span>*</span></label>
+            <input type="tel" class="form-control"
+                   placeholder="Enter your Contact Number" value=""
+                   name="contactNumber" id="contactNumber"
+                   required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="componentType">Select Component Type *</label>
+            <select class="form-control" name="componentType"
+                    id="componentType" required="required"
+                    onchange="checkHighPriority(this);">
+                <option id="accessory" value="accessory">Accessory
+                    Component
+                </option>
+                <option id="integral" value="integral">Integral
+                    Component
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="componentName">Component Name</label>
+            <input type="text" class="form-control"
+                   name="componentName" id="componentName"
+                   placeholder="Enter the Component Name"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity *</label>
+            <input type="text" class="form-control"
+                   name="quantity" id="quantity"
+                   placeholder="Enter the Component's Quantity"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <div id="ifYes" style="display: none;">
+                <input type="checkbox" value="1"
+                       id="isPriorityRequest"
+                       name="isPriorityRequest">
+                <label for="isPriorityRequest">Priority Request</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Return</button>
+
+    </form>
+
     <form name="logoutForm" th:action="@{/logout}" method="post">
         <input type="submit" class="btn btn-primary" value="Log Out"/>
     </form>
 </div>
 </body>
+<script type="text/javascript">
+    function checkHighPriority(that) {
+        if (that.value === "integral") {
+            document.getElementById("ifYes").style.display = "block";
+        } else {
+            document.getElementById("ifYes").style.display = "none";
+        }
+    }
+</script>
 </html>
