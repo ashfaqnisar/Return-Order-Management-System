@@ -1,6 +1,5 @@
-package com.roms.authentication.security.jwt;
+package com.roms.authentication.security;
 
-import com.roms.authentication.payload.AuthResponse;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import com.roms.authentication.exception.TokenInvalidException;
-import com.roms.authentication.security.service.UserDetailsImpl;
+import com.roms.authentication.model.UserDetailPrincipal;
 
 import java.util.Date;
 
@@ -22,16 +21,16 @@ public class JwtHandler {
     @Value("${app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
-    public AuthResponse generateJwtToken(Authentication authentication) {
+    public String generateJwtToken(Authentication authentication) {
 
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+        UserDetailPrincipal userPrincipal = (UserDetailPrincipal) authentication.getPrincipal();
 
-        return new AuthResponse(userPrincipal.getUsername(), Jwts.builder()
+        return Jwts.builder()
                 .setSubject(userPrincipal.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret)
-                .compact());
+                .compact();
     }
 
     public String getUserNameFromJwtToken(String token) {

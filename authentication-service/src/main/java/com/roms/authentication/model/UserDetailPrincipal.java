@@ -1,4 +1,4 @@
-package com.roms.authentication.security.service;
+package com.roms.authentication.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,20 +13,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailPrincipal implements UserDetails {
 
     private long id;
     private String username;
     private String password;
     private List<GrantedAuthority> authorities;
 
-    public UserDetailsImpl(User user) {
+    public UserDetailPrincipal(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
-        this.authorities = Arrays.stream(user.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
     }
 
     @Override

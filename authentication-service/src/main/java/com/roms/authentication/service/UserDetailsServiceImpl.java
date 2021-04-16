@@ -1,5 +1,6 @@
-package com.roms.authentication.security.service;
+package com.roms.authentication.service;
 
+import com.roms.authentication.model.UserDetailPrincipal;
 import com.roms.authentication.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    /*
+    * Updating the logic of the user detail service, with our check of the username.
+    * */
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -33,6 +37,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             log.debug("Inside the exception thing");
             throw new UserNotFoundException(username);
         }
-        return users.map(UserDetailsImpl::new).get();
+        return users.map(UserDetailPrincipal::new).get();
     }
 }

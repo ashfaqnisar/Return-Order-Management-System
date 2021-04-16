@@ -1,4 +1,4 @@
-package com.roms.authentication.security;
+package com.roms.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,24 +16,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.roms.authentication.security.jwt.AuthTokenFilter;
+import com.roms.authentication.security.AuthTokenFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
+public class AuthenticationServiceSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
 	private final UserDetailsService userDetailsService;
 
 	@Autowired
-	public WebSecurityConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
+	public AuthenticationServiceSecurityConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 
