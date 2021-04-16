@@ -1,7 +1,7 @@
 package com.roms.authentication.controller;
 
 import com.roms.authentication.exception.TokenInvalidException;
-import com.roms.authentication.payload.JwtResponse;
+import com.roms.authentication.payload.AuthResponse;
 import com.roms.authentication.payload.LoginRequest;
 import com.roms.authentication.security.jwt.JwtHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -27,14 +27,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<AuthResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtHandler.generateJwtToken(authentication);
-        return new ResponseEntity<>(new JwtResponse(jwt), HttpStatus.OK);
+        AuthResponse authResponse = jwtHandler.generateJwtToken(authentication);
+        return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
 
     @GetMapping("/validate")
