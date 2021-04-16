@@ -48,7 +48,7 @@ public class ReturnProcessService {
         int processingDays = 5;
         double processingCharge = returnRequestPayload.getComponentType().equalsIgnoreCase("integral") ? 500 : 300;
 
-        if (returnRequestPayload.isPriorityRequest()) {
+        if (returnRequestPayload.getComponentType().equalsIgnoreCase("integral") && returnRequestPayload.isPriorityRequest()) {
             processingDays = 2;
             processingCharge += 200;
         }
@@ -83,6 +83,6 @@ public class ReturnProcessService {
         if (paymentResponse.getCurrentBalance() <= -1)
             return "Insufficient Balance";
         else
-            return "Payment Successfully";
+            return "Payment Success";
     }
 }
