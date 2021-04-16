@@ -40,12 +40,14 @@
         margin-top: 3%;
         padding: 3%;
         border-radius: 25px;
+        margin-bottom: 3%;
     }
 
     .register-left {
         text-align: center;
         color: #fff;
         margin-top: 4%;
+        
     }
 
     .register-left input {

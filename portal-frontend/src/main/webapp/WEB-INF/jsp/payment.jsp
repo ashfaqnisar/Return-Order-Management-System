@@ -53,10 +53,7 @@
 
     .register-right {
         background: #f8f9fa;
-        border-top-left-radius: 10% 50%;
-        border-bottom-left-radius: 10% 50%;
-        border-bottom-right-radius: 25px;
-        border-top-right-radius: 25px;
+        border-radius: 25px;
     }
 
     .register-left img {
@@ -153,12 +150,7 @@
 <body>
 <div class="container register">
     <div class="row">
-        <div class="col-md-3 register-left">
-            <img src="https://www.foggypinebooks.com/uploads/6/2/3/9/62392781/published/returns.png?1530990084 alt=" 
-            style="height: 15%; width: 35%;"/>
-            <h1><b>Return Order Portal</b></h1>
-            
-        </div>
+       
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
@@ -225,5 +217,13 @@
                 </div>
 
             </div>
+            </div>
+            <div class="col-md-3 register-left">
+                <img src="https://www.foggypinebooks.com/uploads/6/2/3/9/62392781/published/returns.png?1530990084 alt=" 
+                style="height: 15%; width: 35%;"/>
+                <h1><b>Return Order Portal</b></h1>
+                
+            </div>
+            
 </body>
 </html>

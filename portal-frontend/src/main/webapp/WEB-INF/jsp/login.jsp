@@ -142,10 +142,6 @@
     <div class="container">
         <div class="card login-card">
             <div class="row no-gutters">
-                <div class="col-md-5">
-                    <img src="https://koronapos.com/wp-content/uploads/2020/08/806036_5-New-Blog-Images-5_081820-1.png"
-                         style="width: 100%; height: 100%;">
-                </div>
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="brand-wrapper">
@@ -175,6 +171,11 @@
                         </nav>
                     </div>
                 </div>
+                <div class="col-md-5">
+                    <img src="https://koronapos.com/wp-content/uploads/2020/08/806036_5-New-Blog-Images-5_081820-1.png"
+                         style="width: 100%; height: 100%;">
+                </div>
+                
             </div>
         </div>
 
