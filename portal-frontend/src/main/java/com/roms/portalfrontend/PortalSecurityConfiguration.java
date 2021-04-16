@@ -13,8 +13,10 @@ public class PortalSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
+                .loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/", true).permitAll()
                 .and()
-                .logout().permitAll();
+                .logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll()
+                .and()
+                .csrf().disable();
     }
 }
