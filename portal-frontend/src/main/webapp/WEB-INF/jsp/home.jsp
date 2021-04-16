@@ -22,9 +22,10 @@
     </script>
 </head>
 <style>
- body{
+    body {
         background-image: url('https://uploads-ssl.webflow.com/5eaac2620e0334a0e78c42f4/5eab0fb6ff62007b9876d1f5_5e14ef152f2e01316cec3608_16282806_3_header_returnsprocessing-e1416260444841.png');
     }
+
     .text-secondary {
         text-align: right;
     }
@@ -61,9 +62,10 @@
     }
 
     .register-right {
+        border-radius: 25px;
         background: #f8f9fa;
-        border-top-left-radius: 10% 50%;
-        border-bottom-left-radius: 10% 50%;
+        /*border-top-left-radius: 10% 50%;*/
+        /*border-bottom-left-radius: 10% 50%;*/
     }
 
     .register-left img {
@@ -161,12 +163,6 @@
 <body>
 <div class="container register">
     <div class="row">
-        <div class="col-md-3 register-left">
-            <img src="https://www.foggypinebooks.com/uploads/6/2/3/9/62392781/published/returns.png?1530990084 alt="
-                style="height: 35%; width: 75%;"/>
-            <h1><b>Welcome!</b></h1>
-            <p><b>You are few seconds away from returning your product!</b></p>
-        </div>
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
@@ -260,5 +256,13 @@
                 </div>
 
             </div>
+        </div>
+        <div class="col-md-3 register-left">
+            <img src="https://www.foggypinebooks.com/uploads/6/2/3/9/62392781/published/returns.png?1530990084 alt="
+                 style="height: 35%; width: 75%;"/>
+            <h1><b>Welcome!</b></h1>
+            <p><b>You are few seconds away from returning your product!</b></p>
+        </div>
+    </div>
 </body>
 </html>
