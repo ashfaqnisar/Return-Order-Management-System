@@ -16,7 +16,9 @@
 </head>
 <style>
 
-
+    body{
+        background-image: url('https://uploads-ssl.webflow.com/5eaac2620e0334a0e78c42f4/5eab0fb6ff62007b9876d1f5_5e14ef152f2e01316cec3608_16282806_3_header_returnsprocessing-e1416260444841.png');
+    }
     span {
         color: red;
         font-size: 20px;
@@ -25,7 +27,9 @@
     .register {
         background: -webkit-linear-gradient(left, #ff0000, #ffa07a);
         margin-top: 3%;
+        margin-bottom: 3%;
         padding: 3%;
+        border-radius: 25px;
     }
 
     .register-left {
@@ -51,6 +55,8 @@
         background: #f8f9fa;
         border-top-left-radius: 10% 50%;
         border-bottom-left-radius: 10% 50%;
+        border-bottom-right-radius: 25px;
+        border-top-right-radius: 25px;
     }
 
     .register-left img {
@@ -137,7 +143,7 @@
         text-align: center;
         margin-top: 8%;
         margin-bottom: -15%;
-        color: #495057;
+        color: black;
     }
 
     label {
@@ -148,16 +154,17 @@
 <div class="container register">
     <div class="row">
         <div class="col-md-3 register-left">
-            <img src="https://image.flaticon.com/icons/png/512/1440/1440524.png" alt=""/>
-            <h3>Return Order Portal</h3>
-            <p>You are few seconds away from returning your product!</p>
+            <img src="https://www.foggypinebooks.com/uploads/6/2/3/9/62392781/published/returns.png?1530990084 alt=" 
+            style="height: 15%; width: 35%;"/>
+            <h1><b>Return Order Portal</b></h1>
+            
         </div>
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel"
                      aria-labelledby="home-tab">
-                    <h3 class="register-heading">Enter the card details</h3>
+                    <h3 class="register-heading"><b>Enter the card details</b></h3>
                     <form role="form" method="POST" action="/payment">
                         <div class="row register-form">
                             <div class="col-md-6">

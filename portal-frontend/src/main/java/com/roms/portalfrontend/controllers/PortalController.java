@@ -15,6 +15,11 @@ public class PortalController {
     public String homePage() {
         return "home";
     }
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+    
     @GetMapping("/test")
     public String testPage() {
         return "testLogin";
@@ -40,7 +45,7 @@ public class PortalController {
         return "confirmation";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/[processLogin")
     public String getUserDetails(@ModelAttribute("loginUserRequest") LoginUserRequestPayload loginUserRequestPayload){
         log.info(loginUserRequestPayload.toString());
         return "redirect:/";

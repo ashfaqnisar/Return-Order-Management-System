@@ -13,7 +13,7 @@
 <style>
     body {
         font-family: "Karla", sans-serif;
-        background-color: red;
+        background: url('https://uploads-ssl.webflow.com/5eaac2620e0334a0e78c42f4/5eab0fb6ff62007b9876d1f5_5e14ef152f2e01316cec3608_16282806_3_header_returnsprocessing-e1416260444841.png');
         min-height: 100vh;
     }
 
@@ -30,6 +30,8 @@
         border-radius: 27.5px;
         box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
         overflow: hidden;
+        margin-bottom: 3%;
+        background: -webkit-linear-gradient(left, #ff0000, #ffa07a);
     }
 
     .login-card-img {
@@ -129,7 +131,7 @@
 
     .login-card-footer-nav a {
         font-size: 14px;
-        color: #919aa3;
+        color: black;
     }
 
     /*# sourceMappingURL=login.css.map */
@@ -141,17 +143,17 @@
         <div class="card login-card">
             <div class="row no-gutters">
                 <div class="col-md-5">
-                    <img src="https://www.secondnaturebyhand.com/DSN/secondnaturebyhandcom/Content/Images/Return-policy.png"
+                    <img src="https://koronapos.com/wp-content/uploads/2020/08/806036_5-New-Blog-Images-5_081820-1.png"
                          style="width: 100%; height: 100%;">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="brand-wrapper">
-                            <img src="https://image.flaticon.com/icons/png/512/1440/1440524.png" alt="logo"
-                                 class="logo">
-                            <h1> Return Order Management</h1>
+                            <img src="https://www.foggypinebooks.com/uploads/6/2/3/9/62392781/published/returns.png?1530990084 alt=" alt="logo"
+                                 class="logo" style="width: 25%; height: 25%;">
+                            <h1><b> Return Order Management</b></h1>
                         </div>
-                        <p class="login-card-description">Sign into your account</p>
+                        <p class="login-card-description"><b>Sign into your account</b></p>
                         <form action="login" method='POST'>
                             <div class="form-group">
                                 <label for="username" class="sr-only">Username</label>
