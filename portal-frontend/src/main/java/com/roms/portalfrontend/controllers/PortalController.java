@@ -122,4 +122,9 @@ public class PortalController {
         session.invalidate();
         return "redirect:/login?logout=true";
     }
+
+    @PostMapping("/goToHome")
+    public String goToHome(HttpSession session) {
+        return "redirect:/";
+    }
 }

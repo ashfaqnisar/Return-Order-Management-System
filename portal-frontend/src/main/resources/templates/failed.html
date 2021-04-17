@@ -8,15 +8,28 @@
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
     <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 
 </head>
 <body>
-<div>
-    <h1>Failed</h1>
-    <form name="logoutForm" th:action="@{/logout}" method="post">
-        <input type="submit" class="btn btn-primary" value="Log Out"/>
-    </form>
-</div>
+<main class="d-flex align-items-center align-content-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card card-component justify-content-center text-center">
+                    <img class="mx-auto result-image" src="../static/images/remove.png"
+                         th:src="@{/images/remove.png}"
+                         alt="checked"/>
+                    <h2>Failed</h2>
+                    <p>Payment was Unsuccessful.</p>
+                    <form name="goToHomeForm" th:action="@{/goToHome}" method="post">
+                        <input type="submit" class="btn btn-primary mx-auto" value="Go To Home"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 </body>
 </html>

@@ -49,3 +49,8 @@ span {
 label {
     font-weight: bold;
 }
+
+.result-image {
+    height: 180px;
+    margin-bottom: 20px;
+}
