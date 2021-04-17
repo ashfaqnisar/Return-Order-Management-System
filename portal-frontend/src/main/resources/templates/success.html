@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Payment Success - Return Order Management System</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</head>
+<body>
+<div>
+    <h1>Success</h1>
+
+
+    <form name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-primary" value="Log Out"/>
+    </form>
+</div>
+</body>
+</html>

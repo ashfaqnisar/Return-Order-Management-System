@@ -1,10 +1,12 @@
 package com.roms.portalfrontend.controllers;
 
 import com.roms.portalfrontend.AuthResponsePayload;
-import com.roms.portalfrontend.exception.NoRequestIdException;
 import com.roms.portalfrontend.feignClient.AuthFeignClient;
 import com.roms.portalfrontend.feignClient.ReturnFeignClient;
-import com.roms.portalfrontend.payload.*;
+import com.roms.portalfrontend.payload.PaymentResponsePayload;
+import com.roms.portalfrontend.payload.ReturnRequestPayload;
+import com.roms.portalfrontend.payload.ReturnResponsePayload;
+import com.roms.portalfrontend.payload.UserLoginRequestPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -33,6 +36,9 @@ public class PortalController {
         return "login.html";
     }
 
+    /*
+     * Checks the session for the user object is present or not.
+     * */
     @GetMapping("/")
     public String homePage(HttpSession session) {
         try {
@@ -70,7 +76,6 @@ public class PortalController {
         }
     }
 
-
     @PostMapping("/processReturnRequest")
     public String processReturnRequest(ReturnRequestPayload returnRequestPayload, HttpSession session) {
         try {
@@ -103,12 +108,13 @@ public class PortalController {
             if (responsePayload.getCurrentBalance() <= 0) {
                 return "redirect:/payment?insufficientBalance=true";
             }
-            return "redirect:/payment?success=true";
+            returnResponsePayload = null;
+            return "success.html";
         } catch (NullPointerException e) {
             return "redirect:/login";
         } catch (Exception e) {
             log.error(e.getMessage());
-            return "redirect:/payment?error=true";
+            return "failed.html";
         }
     }
 
