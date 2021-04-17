@@ -15,8 +15,8 @@
 <div>
     <h1>Home</h1>
     <form name="loginForm" method="post" th:action="@{/processReturnRequest}">
-        <div th:if="${param.error}" class="alert alert-danger">
-            Invalid Credentials
+        <div th:if="${param.retry}" class="alert alert-danger">
+            Unable to process the return request, please try again.
         </div>
         <div th:if="${param.logout}" class="alert alert-info">
             Logged Out Successfully

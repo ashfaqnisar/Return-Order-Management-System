@@ -68,6 +68,7 @@ public class PortalController {
         } catch (NullPointerException e) {
             return "redirect:/login";
         } catch (Exception e) {
+            log.info(e.getMessage());
             return "redirect:/?retry=true";
         }
     }
