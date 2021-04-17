@@ -1,5 +1,6 @@
 package com.roms.portalfrontend.feignClient;
 
+import com.roms.portalfrontend.payload.PaymentResponsePayload;
 import com.roms.portalfrontend.payload.ReturnRequestPayload;
 import com.roms.portalfrontend.payload.ReturnResponsePayload;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -15,7 +16,9 @@ public interface ReturnFeignClient {
             ReturnRequestPayload returnRequestPayload
     );
 
-    @PostMapping("/paymentForReturn/{requestId}/{cardNumber}/{processingCharge}")
-    String makePaymentForReturnRequest(@PathVariable String requestId, @PathVariable long cardNumber, @PathVariable double processingCharge);
+    @PostMapping("/returns/paymentForReturn/{requestId}/{cardNumber}/{processingCharge}")
+    PaymentResponsePayload makePaymentForReturnRequest(@RequestHeader("Authorization") String token, @PathVariable String requestId,
+                                                       @PathVariable long cardNumber,
+                                                       @PathVariable double processingCharge);
 
 }

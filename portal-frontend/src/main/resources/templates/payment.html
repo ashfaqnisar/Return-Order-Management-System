@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Payment - Return Order Management System</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</head>
+<body>
+<div>
+    <h1>Payment</h1>
+    <div th:if="${param.error}" class="alert alert-danger">
+        Unable to make the payment for the return request, please try again.
+    </div>
+    <div th:if="${param.insufficientBalance}" class="alert alert-info">
+        You don't have sufficient balance to make the payment. Try again with another card number
+    </div>
+    <div th:if="${param.failed}" class="alert alert-danger">
+        Failed
+    </div>
+    <div th:if="${param.success}" class="alert alert-success">
+        Success
+    </div>
+    <form name="paymentForm" method="post" th:action="@{/processPaymentForRequest}">
+        <div class="form-group">
+            <label for="cardNumber">Card Number *</label>
+            <input type="text" name="cardNumber" id="cardNumber" class="form-control"
+                   placeholder="Enter card number" required="required">
+        </div>
+        <button type="submit" class="btn btn-primary">Make Payment</button>
+
+    </form>
+
+
+    <!--    <div class="form-group">-->
+    <!--      <label for="contactNumber">Contact Number <span>*</span></label>-->
+    <!--      <input type="tel" class="form-control"-->
+    <!--             placeholder="Enter your Contact Number" value=""-->
+    <!--             name="contactNumber" id="contactNumber"-->
+    <!--             required="required"/>-->
+    <!--    </div>-->
+    <!--    <div class="form-group">-->
+    <!--      <label for="componentType">Select Component Type *</label>-->
+    <!--      <select class="form-control" name="componentType"-->
+    <!--              id="componentType" required="required"-->
+    <!--              onchange="checkHighPriority(this);">-->
+    <!--        <option id="accessory" value="accessory">Accessory-->
+    <!--          Component-->
+    <!--        </option>-->
+    <!--        <option id="integral" value="integral">Integral-->
+    <!--          Component-->
+    <!--        </option>-->
+    <!--      </select>-->
+    <!--    </div>-->
+    <!--    <div class="form-group">-->
+    <!--      <label for="componentName">Component Name</label>-->
+    <!--      <input type="text" class="form-control"-->
+    <!--             name="componentName" id="componentName"-->
+    <!--             placeholder="Enter the Component Name"-->
+    <!--             required="required">-->
+    <!--    </div>-->
+    <!--    <div class="form-group">-->
+    <!--      <label for="quantity">Quantity *</label>-->
+    <!--      <input type="text" class="form-control"-->
+    <!--             name="quantity" id="quantity"-->
+    <!--             placeholder="Enter the Component's Quantity"-->
+    <!--             required="required">-->
+    <!--    </div>-->
+    <!--    <div class="form-group">-->
+    <!--      <div id="ifYes" style="display: none;">-->
+    <!--        <input type="checkbox" value="1"-->
+    <!--               id="isPriorityRequest"-->
+    <!--               name="isPriorityRequest">-->
+    <!--        <label for="isPriorityRequest">Priority Request</label>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+    <!--    <button type="submit" class="btn btn-primary">Submit Return</button>-->
+
+    <!--  </form>-->
+
+    <form name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-primary" value="Log Out"/>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    function checkHighPriority(that) {
+        if (that.value === "integral") {
+            document.getElementById("ifYes").style.display = "block";
+        } else {
+            document.getElementById("ifYes").style.display = "none";
+        }
+    }
+</script>
+</html>
