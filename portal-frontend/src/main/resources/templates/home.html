@@ -8,17 +8,17 @@
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
     <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 
 </head>
 <body>
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-    <div class="container register">
+    <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <div class="card home-card">
-                    <h2 class="register-heading"><b>Create Return Request</b></h2>
+                <div class="card card-component">
+                    <h2 class="card-heading"><b>Create Return Request</b></h2>
                     <form name="returnForm" method="post" th:action="@{/processReturnRequest}">
                         <div class="row">
                             <div th:if="${param.retry}" class="alert alert-danger">
@@ -60,12 +60,8 @@
                                     <select class="form-control" name="componentType"
                                             id="componentType" required="required"
                                             onchange="checkHighPriority(this);">
-                                        <option id="accessory" value="accessory">Accessory
-                                            Component
-                                        </option>
-                                        <option id="integral" value="integral">Integral
-                                            Component
-                                        </option>
+                                        <option id="accessory" value="accessory">Accessory Component</option>
+                                        <option id="integral" value="integral">Integral Component</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -93,7 +89,7 @@
             </div>
             <div class="col-md-3 my-auto text-center text-white">
                 <div class="row align-items-center align-content-center">
-                    <img class="mx-auto"
+                    <img class="mx-auto animate-image"
                          src="img"
                          th:src="@{/images/returns.png}"
                          style="height: 35%; width: 65%;" alt="logo"/>

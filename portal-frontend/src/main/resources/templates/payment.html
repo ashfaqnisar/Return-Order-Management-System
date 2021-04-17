@@ -8,34 +8,76 @@
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
     <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 
 </head>
 <body>
-<div>
-    <h1>Payment</h1>
-    <div th:if="${param.error}" class="alert alert-danger">
-        Unable to make the payment for the return request, please try again.
-    </div>
-    <div th:if="${param.insufficientBalance}" class="alert alert-info">
-        You don't have sufficient balance to make the payment. Try again with another card number
-    </div>
-    <div th:if="${param.failed}" class="alert alert-danger">
-        Failed
-    </div>
-    <div th:if="${param.success}" class="alert alert-success">
-        Success
-    </div>
-    <form name="paymentForm" method="post" th:action="@{/processPaymentForRequest}">
-        <div class="form-group">
-            <label for="cardNumber">Card Number *</label>
-            <input type="text" name="cardNumber" id="cardNumber" class="form-control"
-                   placeholder="Enter card number" required="required">
-        </div>
-        <button type="submit" class="btn btn-primary">Make Payment</button>
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card card-component">
+                    <h2 class="card-heading"><b>Payment for the Return Request</b></h2>
+                    <form name="paymentForm" method="post" th:action="@{/processPaymentForRequest}">
+                        <div class="row">
+                            <div th:if="${param.error}" class="alert alert-danger">
+                                Unable to make the payment for the return request, please try again.
+                            </div>
+                            <div th:if="${param.insufficientBalance}" class="alert alert-info">
+                                You don't have sufficient balance to make the payment. Try again with another card
+                                number
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="cardNumber">Card Number *</label>
+                                    <input type="text" name="cardNumber" id="cardNumber" class="form-control"
+                                           placeholder="Ex: 1234 1234 1234 1234" maxlength="16"
+                                           minlength="16" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardHolderName">Cardholder's Name</label><span>*</span>
+                                    <input type="text" id="cardHolderName" name="cardHolderName"
+                                           class="form-control"
+                                           placeholder="Ex: Batman"
+                                           required="required">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="cardExpiration">Card Expiration</label><span>*</span>
+                                    <input type="text" name="cardExpiration" id="cardExpiration"
+                                           class="form-control"
+                                           placeholder="MM/YY" size="5"
+                                           minlength="5" maxlength="5" required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label><span>*</span>
+                                    <input type="password" class="form-control" name="cvv"
+                                           id="cvv" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3"
+                                           maxlength="3"
+                                           required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Make Payment</button>
 
-    </form>
-</div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 my-auto text-center text-white">
+                <div class="row align-items-center align-content-center">
+                    <img class="mx-auto animate-image"
+                         src="img"
+                         th:src="@{/images/returns.png}"
+                         style="height: 35%; width: 65%;" alt="logo"/>
+                </div>
+                <h1><b>Payment</b></h1>
+                <p><b>Make the payment to get started!</b></p>
+            </div>
+        </div>
+    </div>
+</main>
 </body>
 
 </html>
