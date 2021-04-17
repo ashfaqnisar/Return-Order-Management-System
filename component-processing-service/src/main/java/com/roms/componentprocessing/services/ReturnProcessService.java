@@ -69,7 +69,7 @@ public class ReturnProcessService {
 
     }
 
-    public String makePayment(String requestId, long cardNumber, double processingCharge) {
+    public PaymentResponse makePayment(String requestId, long cardNumber, double processingCharge) {
         PaymentReturn paymentRequest = new PaymentReturn(requestId, cardNumber, processingCharge);
 
         paymentReturnRepository.save(paymentRequest);
@@ -80,9 +80,9 @@ public class ReturnProcessService {
         log.info("Crashed here");
         log.info(paymentResponse.toString());
 
-        if (paymentResponse.getCurrentBalance() <= -1)
-            return "Insufficient Balance";
-        else
-            return "Payment Success";
+//        if (paymentResponse.getCurrentBalance() <= -1)
+//            throw new InsufficientBalanceException();
+//        else
+        return paymentResponse;
     }
 }

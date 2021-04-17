@@ -1,6 +1,7 @@
 package com.roms.componentprocessing.controllers;
 
 import com.roms.componentprocessing.feignClients.AuthFeignClient;
+import com.roms.componentprocessing.payload.PaymentResponse;
 import com.roms.componentprocessing.payload.ReturnRequestPayload;
 import com.roms.componentprocessing.payload.ReturnResponsePayload;
 import com.roms.componentprocessing.services.ReturnProcessService;
@@ -30,7 +31,7 @@ public class ComponentRestController {
     }
 
     @PostMapping("/paymentForReturn/{requestId}/{cardNumber}/{processingCharge}")
-    public String paymentForReturnRequest(
+    public PaymentResponse paymentForReturnRequest(
             @RequestHeader("Authorization") String token,
             @PathVariable("requestId") String requestId,
             @PathVariable("cardNumber") long cardNumber,
