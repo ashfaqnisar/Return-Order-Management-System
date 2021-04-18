@@ -103,7 +103,7 @@ public class ComplexController {
                 return "redirect:/payment?insufficientBalance=true";
             }
             invalidateReturnResponse();
-            return "redirect:/success";
+            return "success.html";
         } catch (Exception e) {
             log.error(e.getMessage());
             invalidateReturnResponse();
