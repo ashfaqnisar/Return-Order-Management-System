@@ -1,10 +1,10 @@
-package com.roms.portalfrontend.service;
+package com.roms.portal.service;
 
-import com.roms.portalfrontend.exception.RequestIdNotFoundException;
-import com.roms.portalfrontend.exception.TokenInvalidException;
-import com.roms.portalfrontend.feignClient.AuthFeignClient;
-import com.roms.portalfrontend.payload.AuthResponsePayload;
-import com.roms.portalfrontend.payload.ReturnResponsePayload;
+import com.roms.portal.exception.RequestIdNotFoundException;
+import com.roms.portal.exception.TokenInvalidException;
+import com.roms.portal.feignClient.AuthFeignClient;
+import com.roms.portal.payload.AuthResponsePayload;
+import com.roms.portal.payload.ReturnResponsePayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

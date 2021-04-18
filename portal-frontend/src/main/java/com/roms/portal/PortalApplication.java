@@ -1,4 +1,4 @@
-package com.roms.portalfrontend;
+package com.roms.portal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

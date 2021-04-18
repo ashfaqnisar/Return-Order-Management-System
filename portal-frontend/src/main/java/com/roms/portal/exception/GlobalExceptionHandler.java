@@ -1,4 +1,4 @@
-package com.roms.portalfrontend.exception;
+package com.roms.portal.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;

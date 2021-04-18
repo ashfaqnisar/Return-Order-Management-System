@@ -1,6 +1,6 @@
-package com.roms.portalfrontend.controllers;
+package com.roms.portal.controllers;
 
-import com.roms.portalfrontend.service.PortalService;
+import com.roms.portal.service.PortalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
