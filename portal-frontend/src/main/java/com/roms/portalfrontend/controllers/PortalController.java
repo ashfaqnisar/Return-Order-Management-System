@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 
 @Controller
 @Slf4j
@@ -68,11 +69,12 @@ public class PortalController {
         try {
             AuthResponsePayload response = (AuthResponsePayload) session.getAttribute("user");
             authFeignClient.validateToken(response.getToken());
+            SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
             model.addAttribute("userName", response.getUserName());
             model.addAttribute("requestId", returnResponsePayload.getRequestId());
             model.addAttribute("processingCharge", returnResponsePayload.getProcessingCharge());
             model.addAttribute("packageAndDeliveryCharge", returnResponsePayload.getPackageAndDeliveryCharge());
-            model.addAttribute("dateOfDelivery", returnResponsePayload.getDateOfDelivery());
+            model.addAttribute("dateOfDelivery", dateFormatter.format(returnResponsePayload.getDateOfDelivery()));
             return "confirmation.html";
         } catch (Exception e) {
             return "redirect:/";
