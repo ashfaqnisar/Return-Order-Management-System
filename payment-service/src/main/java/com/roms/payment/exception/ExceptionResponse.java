@@ -1,36 +1,19 @@
 package com.roms.payment.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ExceptionResponse {
 
     private Date timestamp;
-    private String Message;
+    private String message;
     private String details;
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public String getMessage() {
-        return Message;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public ExceptionResponse(Date timestamp, String message, String details) {
-        super();
-        this.timestamp = timestamp;
-        Message = message;
-        this.details = details;
-    }
-
-    @Override
-    public String toString() {
-        return "ExceptionResponse [timestamp=" + timestamp + ", Message=" + Message + ", details=" + details + "]";
-    }
 
 
 }

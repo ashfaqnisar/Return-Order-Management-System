@@ -14,15 +14,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(Exception.class)
-	public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) throws Exception {
-		ExceptionResponse e = new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
-			return new ResponseEntity<>(e,HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
+        ExceptionResponse e = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
-	@ExceptionHandler(CardNotFoundException.class)
-	public final ResponseEntity<Object> handleCardNotFoundException(CardNotFoundException ex, WebRequest request) throws Exception {
-		ExceptionResponse e = new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
-			return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-	}
+    @ExceptionHandler(CardNotFoundException.class)
+    public final ResponseEntity<Object> handleCardNotFoundException(CardNotFoundException ex, WebRequest request) {
+        ExceptionResponse e = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+    }
 }
