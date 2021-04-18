@@ -10,6 +10,7 @@ import com.roms.portalfrontend.payload.UserLoginRequestPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,6 +63,22 @@ public class PortalController {
         }
     }
 
+    @GetMapping("/confirmation")
+    public String confirmationPage(HttpSession session, Model model) {
+        try {
+            AuthResponsePayload response = (AuthResponsePayload) session.getAttribute("user");
+            authFeignClient.validateToken(response.getToken());
+            model.addAttribute("userName", response.getUserName());
+            model.addAttribute("requestId", returnResponsePayload.getRequestId());
+            model.addAttribute("processingCharge", returnResponsePayload.getProcessingCharge());
+            model.addAttribute("packageAndDeliveryCharge", returnResponsePayload.getPackageAndDeliveryCharge());
+            model.addAttribute("dateOfDelivery", returnResponsePayload.getDateOfDelivery());
+            return "confirmation.html";
+        } catch (Exception e) {
+            return "redirect:/";
+        }
+    }
+
     @PostMapping("/processLogin")
     public String processLogin(UserLoginRequestPayload userLoginRequestPayload, HttpSession session) {
         try {
@@ -81,12 +98,21 @@ public class PortalController {
             log.info(returnRequestPayload.toString());
             AuthResponsePayload authResponsePayload = (AuthResponsePayload) session.getAttribute("user");
             returnResponsePayload = returnFeignClient.createReturnRequest(authResponsePayload.getToken(), returnRequestPayload);
-            return "redirect:/payment";
+            return "redirect:/confirmation";
         } catch (NullPointerException e) {
             return "redirect:/login";
         } catch (Exception e) {
             log.error(e.getMessage());
             return "redirect:/?retry=true";
+        }
+    }
+
+    @PostMapping("/confirmOrder")
+    public String confirmOrder(HttpSession session) {
+        try {
+            return "redirect:/payment";
+        } catch (Exception e) {
+            return "redirect:/";
         }
     }
 
