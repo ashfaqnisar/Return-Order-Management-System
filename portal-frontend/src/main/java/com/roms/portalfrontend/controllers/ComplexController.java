@@ -21,32 +21,20 @@ import java.text.SimpleDateFormat;
 
 @Controller
 @Slf4j
-public class PortalController {
+public class ComplexController {
     private final AuthFeignClient authFeignClient;
     private final ReturnFeignClient returnFeignClient;
-
     private final PortalService portalService;
 
     private ReturnResponsePayload returnResponsePayload;
 
     @Autowired
-    public PortalController(AuthFeignClient authFeignClient, ReturnFeignClient returnFeignClient, PortalService portalService) {
+    public ComplexController(AuthFeignClient authFeignClient, ReturnFeignClient returnFeignClient, PortalService portalService) {
         this.authFeignClient = authFeignClient;
         this.returnFeignClient = returnFeignClient;
         this.portalService = portalService;
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login.html";
-    }
-
-
-    @GetMapping("/")
-    public String homePage(HttpSession session) {
-        portalService.checkTokenInSession(session);
-        return "home.html";
-    }
 
     @GetMapping("/payment")
     public String paymentPage(HttpSession session) {
@@ -99,10 +87,6 @@ public class PortalController {
         }
     }
 
-    @PostMapping("/confirmReturnRequest")
-    public String confirmReturnRequest() {
-        return "redirect:/payment";
-    }
 
     @PostMapping("/processPaymentForRequest")
     public String processPaymentForRequest(@RequestParam long cardNumber, HttpSession session) {
@@ -118,23 +102,17 @@ public class PortalController {
             if (responsePayload.getCurrentBalance() <= 0) {
                 return "redirect:/payment?insufficientBalance=true";
             }
-            returnResponsePayload = null;
-            return "success.html";
+            invalidateReturnResponse();
+            return "redirect:/success";
         } catch (Exception e) {
             log.error(e.getMessage());
-            returnResponsePayload = null;
+            invalidateReturnResponse();
             return "failed.html";
         }
     }
 
-    @PostMapping("/logout")
-    public String logoutUser(HttpSession session) {
-        session.invalidate();
-        return "redirect:/login?logout=true";
+    public void invalidateReturnResponse() {
+        returnResponsePayload = null;
     }
 
-    @PostMapping("/goToHome")
-    public String goToHome() {
-        return "redirect:/";
-    }
 }
