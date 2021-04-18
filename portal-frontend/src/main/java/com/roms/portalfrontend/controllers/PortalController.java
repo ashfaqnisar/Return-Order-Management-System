@@ -25,12 +25,15 @@ public class PortalController {
     private final AuthFeignClient authFeignClient;
     private final ReturnFeignClient returnFeignClient;
 
+    private final PortalService portalService;
+
     private ReturnResponsePayload returnResponsePayload;
 
     @Autowired
-    public PortalController(AuthFeignClient authFeignClient, ReturnFeignClient returnFeignClient) {
+    public PortalController(AuthFeignClient authFeignClient, ReturnFeignClient returnFeignClient, PortalService portalService) {
         this.authFeignClient = authFeignClient;
         this.returnFeignClient = returnFeignClient;
+        this.portalService = portalService;
     }
 
     @GetMapping("/login")
@@ -38,40 +41,28 @@ public class PortalController {
         return "login.html";
     }
 
-    /*
-     * Checks the session for the user object is present or not.
-     * */
+
     @GetMapping("/")
     public String homePage(HttpSession session) {
-        try {
-            AuthResponsePayload response = (AuthResponsePayload) session.getAttribute("user");
-            authFeignClient.validateToken(response.getToken());
-            return "home.html";
-        } catch (Exception e) {
-            return "redirect:/login";
-        }
+        portalService.checkTokenInSession(session);
+        return "home.html";
     }
 
     @GetMapping("/payment")
     public String paymentPage(HttpSession session) {
-        try {
-            AuthResponsePayload response = (AuthResponsePayload) session.getAttribute("user");
-            authFeignClient.validateToken(response.getToken());
-            String requestId = returnResponsePayload.getRequestId();
-            log.info(requestId);
-            return "payment.html";
-        } catch (Exception e) {
-            return "redirect:/";
-        }
+        portalService.checkTokenInSession(session);
+        portalService.checkForRequestIdInPayload(returnResponsePayload);
+        return "payment.html";
     }
 
     @GetMapping("/confirmation")
     public String confirmationPage(HttpSession session, Model model) {
         try {
-            AuthResponsePayload response = (AuthResponsePayload) session.getAttribute("user");
-            authFeignClient.validateToken(response.getToken());
+            AuthResponsePayload authResponse = portalService.checkTokenInSession(session);
+            portalService.checkForRequestIdInPayload(returnResponsePayload);
+
             SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-            model.addAttribute("userName", response.getUserName());
+            model.addAttribute("userName", authResponse.getUserName());
             model.addAttribute("requestId", returnResponsePayload.getRequestId());
             model.addAttribute("processingCharge", returnResponsePayload.getProcessingCharge());
             model.addAttribute("packageAndDeliveryCharge", returnResponsePayload.getPackageAndDeliveryCharge());
@@ -99,49 +90,39 @@ public class PortalController {
     public String processReturnRequest(ReturnRequestPayload returnRequestPayload, HttpSession session) {
         try {
             log.info(returnRequestPayload.toString());
-            AuthResponsePayload authResponsePayload = (AuthResponsePayload) session.getAttribute("user");
-            returnResponsePayload = returnFeignClient.createReturnRequest(authResponsePayload.getToken(), returnRequestPayload);
+            AuthResponsePayload authResponse = portalService.checkTokenInSession(session);
+            returnResponsePayload = returnFeignClient.createReturnRequest(authResponse.getToken(), returnRequestPayload);
             return "redirect:/confirmation";
-        } catch (NullPointerException e) {
-            return "redirect:/login";
         } catch (Exception e) {
             log.error(e.getMessage());
             return "redirect:/?retry=true";
         }
     }
 
-    @PostMapping("/confirmOrder")
-    public String confirmOrder(HttpSession session) {
-        try {
-            return "redirect:/payment";
-        } catch (Exception e) {
-            return "redirect:/";
-        }
+    @PostMapping("/confirmReturnRequest")
+    public String confirmReturnRequest() {
+        return "redirect:/payment";
     }
 
     @PostMapping("/processPaymentForRequest")
     public String processPaymentForRequest(@RequestParam long cardNumber, HttpSession session) {
         try {
-            log.info(String.valueOf(cardNumber));
-
-            String requestId = returnResponsePayload.getRequestId();
-            double processingCharge = returnResponsePayload.getProcessingCharge();
-            AuthResponsePayload authResponsePayload = (AuthResponsePayload) session.getAttribute("user");
+            AuthResponsePayload authResponsePayload = portalService.checkTokenInSession(session);
 
             PaymentResponsePayload responsePayload = returnFeignClient.makePaymentForReturnRequest(
                     authResponsePayload.getToken(),
-                    requestId,
+                    portalService.checkForRequestIdInPayload(returnResponsePayload),
                     cardNumber,
-                    processingCharge);
+                    returnResponsePayload.getProcessingCharge());
+
             if (responsePayload.getCurrentBalance() <= 0) {
                 return "redirect:/payment?insufficientBalance=true";
             }
             returnResponsePayload = null;
             return "success.html";
-        } catch (NullPointerException e) {
-            return "redirect:/login";
         } catch (Exception e) {
             log.error(e.getMessage());
+            returnResponsePayload = null;
             return "failed.html";
         }
     }
@@ -153,7 +134,7 @@ public class PortalController {
     }
 
     @PostMapping("/goToHome")
-    public String goToHome(HttpSession session) {
+    public String goToHome() {
         return "redirect:/";
     }
 }
