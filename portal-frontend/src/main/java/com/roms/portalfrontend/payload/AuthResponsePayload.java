@@ -1,4 +1,4 @@
-package com.roms.portalfrontend;
+package com.roms.portalfrontend.payload;
 
 import lombok.Data;
 

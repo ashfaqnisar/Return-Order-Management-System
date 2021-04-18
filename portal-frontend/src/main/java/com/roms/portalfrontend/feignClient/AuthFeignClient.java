@@ -1,6 +1,6 @@
 package com.roms.portalfrontend.feignClient;
 
-import com.roms.portalfrontend.AuthResponsePayload;
+import com.roms.portalfrontend.payload.AuthResponsePayload;
 import com.roms.portalfrontend.payload.UserLoginRequestPayload;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
