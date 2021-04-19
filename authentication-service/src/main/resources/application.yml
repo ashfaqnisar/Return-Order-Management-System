@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:2222}
+  port: 2000
   error:
     include-stacktrace: never
 
@@ -17,10 +17,3 @@ spring:
   h2:
     console:
       enabled: true
-
-eureka:
-  client:
-    service-url:
-      default-zone: http://localhost:8761
-  instance:
-    hostname: localhost

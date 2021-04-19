@@ -4,10 +4,3 @@ server:
 spring:
   application:
     name: portal-frontend
-
-eureka:
-  client:
-    service-url:
-      default-zone: http://localhost:8761
-  instance:
-    hostname: localhost
