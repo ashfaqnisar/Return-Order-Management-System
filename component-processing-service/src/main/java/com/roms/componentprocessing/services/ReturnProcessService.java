@@ -2,8 +2,8 @@ package com.roms.componentprocessing.services;
 
 import com.roms.componentprocessing.entity.PaymentReturn;
 import com.roms.componentprocessing.entity.ReturnRequest;
-import com.roms.componentprocessing.feignClients.PackagingAndDeliveryFeignClient;
-import com.roms.componentprocessing.feignClients.PaymentFeignClient;
+import com.roms.componentprocessing.clients.PackagingAndDeliveryFeignClient;
+import com.roms.componentprocessing.clients.PaymentFeignClient;
 import com.roms.componentprocessing.payload.PaymentResponse;
 import com.roms.componentprocessing.payload.ReturnRequestPayload;
 import com.roms.componentprocessing.payload.ReturnResponsePayload;
