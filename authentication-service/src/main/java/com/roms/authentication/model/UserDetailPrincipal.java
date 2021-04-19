@@ -1,16 +1,11 @@
 package com.roms.authentication.model;
 
+import com.roms.authentication.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.roms.authentication.entity.User;
-
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 public class UserDetailPrincipal implements UserDetails {

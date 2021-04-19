@@ -1,6 +1,6 @@
 package com.roms.componentprocessing.controllers;
 
-import com.roms.componentprocessing.feignClients.AuthFeignClient;
+import com.roms.componentprocessing.clients.AuthFeignClient;
 import com.roms.componentprocessing.payload.PaymentResponse;
 import com.roms.componentprocessing.payload.ReturnRequestPayload;
 import com.roms.componentprocessing.payload.ReturnResponsePayload;
