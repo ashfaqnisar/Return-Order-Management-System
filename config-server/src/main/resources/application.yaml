@@ -9,7 +9,7 @@ spring:
       server:
         git:
           uri: https://github.com/ashfaqnisar/sample-config-server
-
+          default-label: main
 eureka:
   client:
     register-with-eureka: true
