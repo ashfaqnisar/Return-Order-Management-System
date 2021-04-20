@@ -2,12 +2,14 @@ package com.roms.payment.service;
 
 import com.roms.payment.entity.CreditCard;
 import com.roms.payment.exception.CardNotFoundException;
+import com.roms.payment.exception.InsufficientBalanceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.roms.payment.repository.CreditCardRepository;
 
+import javax.naming.InsufficientResourcesException;
 import javax.transaction.Transactional;
 
 @Component
@@ -29,15 +31,15 @@ public class CreditCardService {
         }
 
         double cardLimit = creditCard.getCardBalance();
-        double balance = cardLimit > 0 ? cardLimit - charge : 0;
+        double balance = cardLimit > 0 ? cardLimit - charge : -1;
 
-        if (balance > 0) {
+        if (balance >= 0) {
             creditCard.setCardBalance(balance);
             cardRepository.save(creditCard);
             return balance;
         }
 
-        return -1;
+        throw new InsufficientBalanceException("Insufficient Balance");
     }
 
 }

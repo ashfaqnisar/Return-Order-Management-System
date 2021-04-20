@@ -25,4 +25,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         ExceptionResponse e = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(InsufficientBalanceException.class)
+    public final ResponseEntity<Object> handleInsufficientBalanceException(InsufficientBalanceException ex,
+                                                                           WebRequest request) {
+        ExceptionResponse e = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(e, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
 }
