@@ -40,6 +40,11 @@ public class BaseController {
         return "redirect:/";
     }
 
+    @PostMapping("/goToPayment")
+    public String goToPayment() {
+        return "redirect:/payment";
+    }
+
     @PostMapping("/logout")
     public String logoutUser(HttpSession session) {
         session.invalidate();

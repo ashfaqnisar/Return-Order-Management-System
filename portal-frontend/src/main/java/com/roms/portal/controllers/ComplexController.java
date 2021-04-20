@@ -107,7 +107,6 @@ public class ComplexController {
             return "success.html";
         } catch (Exception e) {
             log.error(e.getMessage());
-            invalidateReturnResponse();
             return "failed.html";
         }
     }
