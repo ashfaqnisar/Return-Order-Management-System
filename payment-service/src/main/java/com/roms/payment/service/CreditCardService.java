@@ -21,18 +21,18 @@ public class CreditCardService {
         this.cardRepository = cardRepository;
     }
 
-    public double processPayment(long cardNumber, double charge) throws CardNotFoundException {
+    public double processPayment(long cardNumber, int cvv, double charge) throws CardNotFoundException {
         CreditCard creditCard = cardRepository.findByCardNumber(cardNumber);
 
-        if (creditCard == null) {
+        if (creditCard == null || creditCard.getCvv() != cvv) {
             throw new CardNotFoundException(cardNumber);
         }
 
-        double cardLimit = creditCard.getCardLimit();
+        double cardLimit = creditCard.getCardBalance();
         double balance = cardLimit > 0 ? cardLimit - charge : 0;
 
         if (balance > 0) {
-            creditCard.setCardLimit(balance);
+            creditCard.setCardBalance(balance);
             cardRepository.save(creditCard);
             return balance;
         }

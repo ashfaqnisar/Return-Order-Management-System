@@ -69,14 +69,14 @@ public class ReturnProcessService {
 
     }
 
-    public PaymentResponse makePayment(String requestId, long cardNumber, double processingCharge) {
+    public PaymentResponse makePayment(String requestId, long cardNumber, int cvv, double processingCharge) {
         PaymentReturn paymentRequest = new PaymentReturn(requestId, cardNumber, processingCharge);
 
         paymentReturnRepository.save(paymentRequest);
 
         log.info("Works here");
 
-        PaymentResponse paymentResponse = paymentFeignClient.getCurrentBalance(cardNumber, processingCharge);
+        PaymentResponse paymentResponse = paymentFeignClient.getCurrentBalance(cardNumber, cvv, processingCharge);
         log.info("Crashed here");
         log.info(paymentResponse.toString());
 

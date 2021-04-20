@@ -16,9 +16,10 @@ public interface ReturnFeignClient {
             ReturnRequestPayload returnRequestPayload
     );
 
-    @PostMapping("/returns/paymentForReturn/{requestId}/{cardNumber}/{processingCharge}")
+    @PostMapping("/returns/paymentForReturn/{requestId}/{cardNumber}/{cvv}/{processingCharge}")
     PaymentResponsePayload makePaymentForReturnRequest(@RequestHeader("Authorization") String token, @PathVariable String requestId,
                                                        @PathVariable long cardNumber,
+                                                       @PathVariable int cvv,
                                                        @PathVariable double processingCharge);
 
 }

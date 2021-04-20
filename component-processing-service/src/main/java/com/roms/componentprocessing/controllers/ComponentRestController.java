@@ -30,15 +30,16 @@ public class ComponentRestController {
         return returnProcessService.processReturnRequest(returnRequestPayload);
     }
 
-    @PostMapping("/paymentForReturn/{requestId}/{cardNumber}/{processingCharge}")
+    @PostMapping("/paymentForReturn/{requestId}/{cardNumber}/{cvv}/{processingCharge}")
     public PaymentResponse paymentForReturnRequest(
             @RequestHeader("Authorization") String token,
             @PathVariable("requestId") String requestId,
             @PathVariable("cardNumber") long cardNumber,
+            @PathVariable("cvv") int cvv,
             @PathVariable("processingCharge") double processingCharge
     ) {
         authFeignClient.validateToken(token);
-        return returnProcessService.makePayment(requestId, cardNumber, processingCharge);
+        return returnProcessService.makePayment(requestId, cardNumber, cvv ,processingCharge);
     }
 
 }

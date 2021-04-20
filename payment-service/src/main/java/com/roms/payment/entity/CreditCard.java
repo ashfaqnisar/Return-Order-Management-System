@@ -10,9 +10,11 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "credits")
+@Table(name = "CREDITS")
 public class CreditCard {
     @Id
     private Long cardNumber;
-    private double cardLimit;
+    private double cardBalance;
+    private int cvv;
+
 }

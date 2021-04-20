@@ -89,7 +89,7 @@ public class ComplexController {
 
 
     @PostMapping("/processPaymentForRequest")
-    public String processPaymentForRequest(@RequestParam long cardNumber, HttpSession session) {
+    public String processPaymentForRequest(@RequestParam long cardNumber, int cvv, HttpSession session) {
         try {
             AuthResponsePayload authResponsePayload = portalService.checkTokenInSession(session);
 
@@ -97,6 +97,7 @@ public class ComplexController {
                     authResponsePayload.getToken(),
                     portalService.checkForRequestIdInPayload(returnResponsePayload),
                     cardNumber,
+                    cvv,
                     returnResponsePayload.getProcessingCharge());
 
             if (responsePayload.getCurrentBalance() <= 0) {
